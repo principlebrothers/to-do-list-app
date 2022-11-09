@@ -7,7 +7,7 @@ import UpdateTaskForm from './components/UpdateTaskForm';
 import ToDo from './components/ToDo';
 import logo512 from './assets/logo512.png';
 
-const App = () =>{
+const App = () => {
   const [todos, setTodos] = useState([]);
 
   // Temporary state
@@ -102,6 +102,6 @@ const App = () =>{
       />
     </div>
   );
-}
+};
 
 export default App;
