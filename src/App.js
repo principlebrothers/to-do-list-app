@@ -14,6 +14,11 @@ const App = () => {
   const [newTask, setNewTask] = useState('');
   const [updateData, setUpdateData] = useState('');
 
+  // store todos on local storage
+  const storeTodos = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
   // Add Task
   const addTask = () => {
     if (newTask) {
@@ -24,6 +29,7 @@ const App = () => {
       };
       setTodos([...todos, newTodo]);
       setNewTask('');
+      storeTodos([...todos, newTodo]);
     }
   };
 
