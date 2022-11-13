@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -14,9 +14,17 @@ const App = () => {
   const [newTask, setNewTask] = useState('');
   const [updateData, setUpdateData] = useState('');
 
-  // store todos on local storage
-  const storeTodos = () => {
-    localStorage.setItem('todos', JSON.stringify(todos));
+  // Retrieve todos from local storage
+  useEffect(() => {
+    const localTodos = localStorage.getItem('todos');
+    if (localTodos) {
+      setTodos(JSON.parse(localTodos));
+    }
+  }, []);
+
+  // Store todos on local storage
+  const storeTodos = (newInput) => {
+    localStorage.setItem('todos', JSON.stringify(newInput));
   };
 
   // Add Task
@@ -27,9 +35,10 @@ const App = () => {
         title: newTask,
         status: false,
       };
-      setTodos([...todos, newTodo]);
+      const mergedNewTodo = [...todos, newTodo];
+      setTodos(mergedNewTodo);
       setNewTask('');
-      storeTodos([...todos, newTodo]);
+      storeTodos(mergedNewTodo);
     }
   };
 
@@ -37,6 +46,7 @@ const App = () => {
   const deleteTask = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
+    storeTodos(newTodos);
   };
 
   // Mark task as completed
@@ -48,6 +58,7 @@ const App = () => {
       return task;
     });
     setTodos(newTask);
+    storeTodos(newTask);
   };
 
   // Cancel update
@@ -68,7 +79,9 @@ const App = () => {
   // Update task
   const updateTask = () => {
     const filteredTask = [...todos].filter((task) => task.id !== updateData.id);
-    setTodos([...filteredTask, updateData]);
+    const mergedUpdateTake = [...filteredTask, updateData];
+    setTodos(mergedUpdateTake);
+    storeTodos(mergedUpdateTake);
     setUpdateData('');
   };
 
