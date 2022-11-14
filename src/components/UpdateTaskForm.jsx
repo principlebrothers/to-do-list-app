@@ -26,7 +26,11 @@ UpdateTaskForm.propTypes = {
   updateTask: PropTypes.func.isRequired,
   cancelUpdate: PropTypes.func.isRequired,
   changeTaskForUpdate: PropTypes.func.isRequired,
-  updateData: PropTypes.string.isRequired,
+  updateData: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    status: PropTypes.bool,
+  }).isRequired,
 };
 
 export default UpdateTaskForm;
