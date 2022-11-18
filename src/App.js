@@ -86,10 +86,9 @@ const App = () => {
   };
 
   // Drag and drop
-  const onDragStart = (e, id) => {
-    e.dataTransfer.setData('id', id);
-  };
-
+  // const onDragStart = (e, id) => {
+  //   e.dataTransfer.setData('id', id);
+  // };
 
   /// ///////////////////////////////////////
   return (
