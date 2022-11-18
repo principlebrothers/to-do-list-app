@@ -85,6 +85,11 @@ const App = () => {
     setUpdateData('');
   };
 
+  // Drag and drop
+  // const onDragStart = (e, id) => {
+  //   e.dataTransfer.setData('id', id);
+  // };
+
   /// ///////////////////////////////////////
   return (
     <div className="container App">
